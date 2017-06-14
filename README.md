@@ -8,23 +8,22 @@ This is higher order component for React (DOM) to let end users know that view t
 
 *Leaving* means
 
-1. closing browser tab / window
-2. navigating away from a page via *react-router* 4.
+1. navigating away from a route via *react-router* 4.
+2. closing browser tab / window altogether
 
-This helper is primary meant for 1st case (generic components / containers), but can also be used with router [`<Promt>`](https://github.com/ReactTraining/react-router/blob/master/packages/react-router/docs/api/Prompt.md) as HOC passes bool prop that can be used.
-
-```jsx
-<Prompt
-  when={this.props.guardDirtyIsActive}
-  message="Changes you made are not saved. Are you sure you want to leave this page?"
-/>
-```
+This helper was put together for augmenting 1st case as *react-router* [`<Promt>`](https://github.com/ReactTraining/react-router/blob/master/packages/react-router/docs/api/Prompt.md) is fine and dandy, but does not cover closing browser window. However this HOC can be used also with generic components / containers, where no routing is used.
 
 By *dirty state* it is usually (and also here) meant when some form data is changed and unsaved. But it can be any state that is not *resolved* by user before closing the window or navigating away from the route.
 
+## Install
+
+```sh
+npm install react-router-guard-dirty-state --save-dev
+```
+
 ## Usage
 
-ES2015
+ES2015 (ES6)
 
 ```javascript
 import guardDirtySate from 'react-router-guard-dirty-state';
@@ -46,6 +45,33 @@ Decorate
 guardDirtySate(receiveBoolProp)(React.Component)
 ```
 
+## Props
+
+```javascript
+void guardDirtySetActive(bool)
+```
+
+On all cases where state become *dirty* issue `this.props.guardDirtySetActive(true)`.
+On all cases where state becomes *pristine* (form is saved or reverted) issue `this.props.guardDirtySetActive(false)`.
+
+When leaving page while *dirty* is active user will get promted.
+
+```javascript
+bool guardDirtyIsActive
+```
+
+This prop reflects current `dirty` state. Basically it means that issuing `this.props.guardDirtySetActive(isDirty)` where `isDirty` differs from previous *state* the component will receive prop update for `guardDirtyIsActive`. Do whatever you want with `this.props.guardDirtyIsActive`. Of course prop will be pushed only on *dirty state* change, not on every `guardDirtySetActive()`.
+
+Example shows simple case where `SomeComponent` is 
+ is under `<Router>` tree (any level deep as `react-router` 4 works [this way](https://reacttraining.com/react-router/web/example/basic) now) and we can use this prop to set wether `<Prompt />` should run on route change.
+ 
+Note that receiving `guardDirtyIsActive` prop can be turned off by passing `false` to HOC if you do not use it (you do not use routes, or use some form management package for React that already handles `dirty` in component-space), which saves React reconciliation cycles.
+ 
+ ```jsx
+ export default guardDirtySate(false)(SomeComponent);
+ ```
+ 
+ 
 ## Example
 
 
@@ -71,7 +97,6 @@ class SomeComponent extends Component {
     super(props);
 
     this.state = {
-      guardDirtyIsActive: false,
       formValues: {
         name: '',
         surname: ''
@@ -156,32 +181,6 @@ class SomeComponent extends Component {
 export default guardDirtySate()(SomeComponent);
 ```
 
-
-## Props
-
-```javascript
-void guardDirtySetActive(bool)
-```
-
-On all cases where state become *dirty* issue `this.props.guardDirtySetActive(true)`.
-On all cases where state becomes clear (form is saved or reverted) issue `this.props.guardDirtySetActive(false)`.
-
-When leaving page while *dirty* is active user will get promted.
-
-```javascript
-bool guardDirtyIsActive
-```
-
-This prop reflects current `dirty` state. Basically it means that issuing `this.props.guardDirtySetActive(isDirty)` where `isDirty` differs from previous *state* the component will receive prop update for `guardDirtyIsActive`. Do whatever you want with `this.props.guardDirtyIsActive`. 
-
-Example shows simple case where `SomeComponent` is 
- is under `<Router>` tree (any level deep as `react-router` 4 works [this way](https://reacttraining.com/react-router/web/example/basic) now) and we can use this prop to set wether `<Prompt />` should run on route change.
- 
-Note that receiving `guardDirtyIsActive` prop can be turned off by passing `false` to HOC if you do not use it (you do not use routes, or use some form management package for React that already handles `dirty` in component-space), which saves React reconciliation cycles.
- 
- ```jsx
- export default guardDirtySate(false)(SomeComponent);
- ```
  
 ## Building
 
