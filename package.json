@@ -28,9 +28,9 @@
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build:front:dev": "npm run build:front:clean && NODE_ENV=development webpack --config=$(pwd)/webpack.build.config.js -d",
-    "build:front:prod": "npm run build:front:clean && NODE_ENV=production webpack --config=$(pwd)/webpack.build.config.js --progress",
-    "build:front:clean": "rm -rf ./dist/**"
+    "build:dev": "npm run build:clean && NODE_ENV=development webpack --config=$(pwd)/webpack.build.config.js -d",
+    "build:prod": "npm run build:clean && NODE_ENV=production webpack --config=$(pwd)/webpack.build.config.js --progress",
+    "build:clean": "rm -rf ./dist/**"
   },
   "devDependencies": {
     "babel-core": "^6.24.1",
