@@ -1,5 +1,5 @@
 {
-  "name": "react-router-guard-dirty-state",
+  "name": "@warp-lab/react-router-guard-dirty-state",
   "version": "0.0.1",
   "description": "Guard unsaved / dirty componets (usually containing forms) by alets when leaving both by onbeforeunload and react-roter routes.",
   "main": "index.js",
@@ -24,8 +24,7 @@
   },
   "homepage": "https://github.com/WARP-LAB/react-router-guard-dirty-state#readme",
   "private": false,
-  "config": {
-  },
+  "config": {},
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build:dev": "npm run build:clean && NODE_ENV=development webpack --config=$(pwd)/webpack.build.config.js -d",
@@ -54,5 +53,6 @@
     "prop-types": "^15.5.10",
     "react": "^15.5.4",
     "webpack": "^2.6.1"
-  }
+  },
+  "dependencies": {}
 }
