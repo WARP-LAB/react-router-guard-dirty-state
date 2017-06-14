@@ -1,0 +1,58 @@
+{
+  "name": "react-router-guard-dirty-state",
+  "version": "0.0.1",
+  "description": "Guard unsaved / dirty componets (usually containing forms) by alets when leaving both by onbeforeunload and react-roter routes.",
+  "main": "dist/index.js",
+  "keywords": [
+    "react",
+    "react-router",
+    "form",
+    "dirty",
+    "state",
+    "guard",
+    "alert",
+    "onbeforeunload"
+  ],
+  "author": "kroko / Reinis Adovičs <development@warp.lv> (http://www.warp.lv)",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/WARP-LAB/react-router-guard-dirty-state.git"
+  },
+  "bugs": {
+    "url": "https://github.com/WARP-LAB/react-router-guard-dirty-state/issues"
+  },
+  "homepage": "https://github.com/WARP-LAB/react-router-guard-dirty-state#readme",
+  "private": false,
+  "config": {
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build:front:dev": "npm run build:front:clean && NODE_ENV=development webpack --config=$(pwd)/webpack.build.config.js -d",
+    "build:front:prod": "npm run build:front:clean && NODE_ENV=production webpack --config=$(pwd)/webpack.build.config.js --progress",
+    "build:front:clean": "rm -rf ./dist/**"
+  },
+  "devDependencies": {
+    "babel-core": "^6.24.1",
+    "babel-eslint": "^7.2.3",
+    "babel-loader": "^7.0.0",
+    "babel-plugin-transform-class-properties": "^6.24.1",
+    "babel-plugin-transform-function-bind": "^6.22.0",
+    "babel-plugin-transform-object-rest-spread": "^6.23.0",
+    "babel-preset-env": "^1.5.1",
+    "babel-preset-react": "^6.24.1",
+    "babel-preset-react-optimize": "^1.0.1",
+    "eslint": "^3.19.0",
+    "eslint-config-standard": "^10.2.1",
+    "eslint-loader": "^1.7.1",
+    "eslint-plugin-babel": "^4.1.1",
+    "eslint-plugin-import": "^2.3.0",
+    "eslint-plugin-node": "^5.0.0",
+    "eslint-plugin-promise": "^3.5.0",
+    "eslint-plugin-react": "^7.0.1",
+    "eslint-plugin-standard": "^3.0.1",
+    "prop-types": "^15.5.10",
+    "react": "^15.5.4",
+    "webpack": "^2.6.1"
+  }
+}
