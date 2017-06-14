@@ -1,6 +1,6 @@
-#react-router-guard-dirty-state
+# react-router-guard-dirty-state
 
-*Guard unsaved / dirty componets (usually containing forms) by alets when leaving both by onbeforeunload and react-roter routes.*
+*Guard unsaved / dirty componets (usually containing forms) by issuing alert when leaving the component both by closing window (onbeforeunload) and / or navigating away by using react-roter routes.*
 
 ## About
 
@@ -40,8 +40,8 @@ Decorate
 
 ```javascript
 /**
- * @param {PropTypes.bool} receiveBoolProp, default = true
- * @param {PropTypes.node} React.Component / React.pureComponent
+ * @param {PropTypes.bool} receiveBoolProp default = true
+ * @param {PropTypes.node} React.Component (or React.PureComponent)
  */
 guardDirtySate(receiveBoolProp)(React.Component)
 ```
@@ -106,7 +106,7 @@ class SomeComponent extends Component {
 
   handleFormSubmit (ev) {
     const {formValues} = this.state;
-    alert(`Data was submitted. Name: ${formValues.username}, surname: ${formValues.password}`);
+    alert(`Data was submitted. Name: ${formValues.username}, surname: ${formValues.surname}`);
     ev.preventDefault();
     this.setFormDirty(false);
   }
@@ -134,7 +134,7 @@ class SomeComponent extends Component {
             <input
               type="text"
               name="surname"
-              value={formValues.password}
+              value={formValues.surname}
               onChange={this.handleFormChange}
             />
           </label>
@@ -166,7 +166,7 @@ void guardDirtySetActive(bool)
 On all cases where state become *dirty* issue `this.props.guardDirtySetActive(true)`.
 On all cases where state becomes clear (form is saved or reverted) issue `this.props.guardDirtySetActive(false)`.
 
-Done. When leaving page while *dirty* is active user will get promted.
+When leaving page while *dirty* is active user will get promted.
 
 ```javascript
 bool guardDirtyIsActive
@@ -177,7 +177,7 @@ This prop reflects current `dirty` state. Basically it means that issuing `this.
 Example shows simple case where `SomeComponent` is 
  is under `<Router>` tree (any level deep as `react-router` 4 works [this way](https://reacttraining.com/react-router/web/example/basic) now) and we can use this prop to set wether `<Prompt />` should run on route change.
  
-Note that receiving `guardDirtyIsActive` prop can be turned off if you do not use it, which saves React reconciliation cycles.
+Note that receiving `guardDirtyIsActive` prop can be turned off by passing `false` to HOC if you do not use it (you do not use routes, or use some form management package for React that already handles `dirty` in component-space), which saves React reconciliation cycles.
  
  ```jsx
  export default guardDirtySate(false)(SomeComponent);
