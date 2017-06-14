@@ -31,7 +31,7 @@ let config = {
     index: path.join(__dirname, 'src/index.jsx')
   },
   output: {
-    path: path.join(__dirname, 'dist'),
+    path: __dirname,
     filename: '[name].js',
     libraryTarget: 'umd'
   },
