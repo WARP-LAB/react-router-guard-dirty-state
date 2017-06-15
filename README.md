@@ -196,3 +196,9 @@ npm run build:prod
 
 N/A
 
+## Todo
+
+Copy possible static methods using [hoist-non-react-statics](https://github.com/mridgway/hoist-non-react-statics)
+
+
+
