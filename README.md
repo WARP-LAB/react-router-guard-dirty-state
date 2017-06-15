@@ -131,7 +131,7 @@ class SomeComponent extends Component {
 
   handleFormSubmit (ev) {
     const {formValues} = this.state;
-    alert(`Data was submitted. Name: ${formValues.username}, surname: ${formValues.surname}`);
+    alert(`Data was submitted. Name: ${formValues.name}, surname: ${formValues.surname}`);
     ev.preventDefault();
     this.setFormDirty(false);
   }
@@ -150,7 +150,7 @@ class SomeComponent extends Component {
             <input
               type="text"
               name="name"
-              value={formValues.username}
+              value={formValues.name}
               onChange={this.handleFormChange}
             />
           </label>
