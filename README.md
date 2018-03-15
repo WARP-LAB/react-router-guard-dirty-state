@@ -26,13 +26,13 @@ npm install react-router-guard-dirty-state --save-dev
 ES2015 (ES6)
 
 ```javascript
-import guardDirtySate from 'react-router-guard-dirty-state';
+import guardDirtyState from 'react-router-guard-dirty-state';
 ```
 
 CommonJS
 
 ```javascript
-const guardDirtySate = require('react-router-guard-dirty-state').default;
+const guardDirtyState = require('react-router-guard-dirty-state').default;
 ```
 
 Decorate
@@ -42,7 +42,7 @@ Decorate
  * @param {PropTypes.bool} receiveBoolProp default = true
  * @param {PropTypes.node} React.Component (or React.PureComponent)
  */
-guardDirtySate(receiveBoolProp)(React.Component)
+guardDirtyState(receiveBoolProp)(React.Component)
 ```
 
 ## Props
@@ -68,7 +68,7 @@ Example shows simple case where `SomeComponent` is
 Note that receiving `guardDirtyIsActive` prop can be turned off by passing `false` to HOC if you do not use it (you do not use routes, or use some form management package for React that already handles `dirty` in component-space), which saves React reconciliation cycles.
  
  ```jsx
- export default guardDirtySate(false)(SomeComponent);
+ export default guardDirtyState(false)(SomeComponent);
  ```
  
  
@@ -81,7 +81,7 @@ Note that receiving `guardDirtyIsActive` prop can be turned off by passing `fals
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import {Prompt} from 'react-router-dom';
-import guardDirtySate from 'react-router-guard-dirty-state';
+import guardDirtyState from 'react-router-guard-dirty-state';
 
 class SomeComponent extends Component {
   static propTypes = {
@@ -178,7 +178,7 @@ class SomeComponent extends Component {
   }
 }
 
-export default guardDirtySate()(SomeComponent);
+export default guardDirtyState()(SomeComponent);
 ```
 
  
