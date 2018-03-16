@@ -1,6 +1,6 @@
 {
   "name": "react-router-guard-dirty-state",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "description": "Guard unsaved / dirty componets (usually containing forms) by alets when leaving both by onbeforeunload and react-roter routes.",
   "main": "index.js",
   "keywords": [
